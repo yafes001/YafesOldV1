@@ -1,0 +1,386 @@
+﻿<Window x:Class="Yafes.Main"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="YAFES CYBER DRIVER TOOL" Height="561" Width="906"
+        WindowStartupLocation="CenterScreen"
+        Background="#0D1117"
+        ResizeMode="CanMinimize">
+
+    <Window.Resources>
+        <!-- Cyber Button Style -->
+        <Style x:Key="CyberButtonStyle" TargetType="Button">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                        <GradientStop Color="#00D4FF" Offset="0"/>
+                        <GradientStop Color="#0096C7" Offset="1"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Foreground" Value="#FFFFFF"/>
+            <Setter Property="FontFamily" Value="Consolas"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="BorderBrush" Value="#00F5FF"/>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect Color="#00F5FF" BlurRadius="8" ShadowDepth="0" Opacity="0.6"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="4"
+                                Effect="{TemplateBinding Effect}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background">
+                                    <Setter.Value>
+                                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                            <GradientStop Color="#00F5FF" Offset="0"/>
+                                            <GradientStop Color="#00D4FF" Offset="1"/>
+                                        </LinearGradientBrush>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="Effect">
+                                    <Setter.Value>
+                                        <DropShadowEffect Color="#00F5FF" BlurRadius="15" ShadowDepth="0" Opacity="0.9"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="#003D5C"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Cyber TextBlock Style -->
+        <Style x:Key="CyberTextStyle" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#00F5FF"/>
+            <Setter Property="FontFamily" Value="Consolas"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect Color="#00F5FF" BlurRadius="5" ShadowDepth="0" Opacity="0.5"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Cyber Border Style -->
+        <Style x:Key="CyberBorderStyle" TargetType="Border">
+            <Setter Property="BorderBrush" Value="#00F5FF"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="CornerRadius" Value="5"/>
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1" Opacity="0.1">
+                        <GradientStop Color="#00F5FF" Offset="0"/>
+                        <GradientStop Color="#0096C7" Offset="1"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect Color="#00F5FF" BlurRadius="10" ShadowDepth="0" Opacity="0.3"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Cyber ProgressBar Style -->
+        <Style x:Key="CyberProgressStyle" TargetType="ProgressBar">
+            <Setter Property="Background" Value="#1A1A1A"/>
+            <Setter Property="BorderBrush" Value="#00F5FF"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ProgressBar">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="3">
+                            <Grid>
+                                <Rectangle Name="PART_Track" Fill="#1A1A1A"/>
+                                <Rectangle Name="PART_Indicator" 
+                                          Fill="#00F5FF" 
+                                          HorizontalAlignment="Left">
+                                    <Rectangle.Effect>
+                                        <DropShadowEffect Color="#00F5FF" BlurRadius="8" ShadowDepth="0" Opacity="0.8"/>
+                                    </Rectangle.Effect>
+                                </Rectangle>
+                            </Grid>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Cyber ListBox Style -->
+        <Style x:Key="CyberListBoxStyle" TargetType="ListBox">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Foreground" Value="#00F5FF"/>
+            <Setter Property="FontFamily" Value="Consolas"/>
+            <Setter Property="FontSize" Value="11"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+
+        <!-- Cyber CheckBox Style -->
+        <Style x:Key="CyberCheckBoxStyle" TargetType="CheckBox">
+            <Setter Property="Foreground" Value="#00F5FF"/>
+            <Setter Property="FontFamily" Value="Consolas"/>
+            <Setter Property="FontSize" Value="11"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect Color="#00F5FF" BlurRadius="3" ShadowDepth="0" Opacity="0.4"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="CheckBox">
+                        <StackPanel Orientation="Horizontal">
+                            <Border Name="checkBoxBorder" 
+                                   Width="16" Height="16" 
+                                   BorderBrush="#00F5FF" 
+                                   BorderThickness="2" 
+                                   CornerRadius="3"
+                                   Background="#1A1A1A">
+                                <Grid>
+                                    <TextBlock Name="checkMark" 
+                                             Text="✓" 
+                                             Foreground="#00FF88"
+                                             FontSize="12" 
+                                             FontWeight="Bold"
+                                             HorizontalAlignment="Center" 
+                                             VerticalAlignment="Center"
+                                             Visibility="Collapsed"/>
+                                </Grid>
+                            </Border>
+                            <ContentPresenter Margin="5,0,0,0" 
+                                            VerticalAlignment="Center"/>
+                        </StackPanel>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="checkMark" Property="Visibility" Value="Visible"/>
+                                <Setter TargetName="checkBoxBorder" Property="Background" Value="#003D5C"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="checkBoxBorder" Property="BorderBrush" Value="#00FF88"/>
+                                <Setter Property="Foreground" Value="#00FF88"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <!-- Ana Canvas Layout - Pixel Perfect Positioning -->
+    <Canvas Margin="0,0,21,13">
+        <!-- Cyber Grid Pattern Background -->
+        <Rectangle Canvas.Left="0" Canvas.Top="0" Width="818" Height="524" Fill="#0D1117" Opacity="0.9" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+
+        <!-- Grid Lines -->
+        <!-- Vertical Lines -->
+        <Line Canvas.Left="250" Canvas.Top="0" X2="0" Y2="520" Stroke="#00F5FF" StrokeThickness="0.5" Opacity="0.3"/>
+        <Line Canvas.Left="500" Canvas.Top="0" X2="0" Y2="520" Stroke="#00F5FF" StrokeThickness="0.5" Opacity="0.2"/>
+        <Line Canvas.Left="750" Canvas.Top="0" X2="0" Y2="520" Stroke="#00F5FF" StrokeThickness="0.5" Opacity="0.2"/>
+
+        <!-- Horizontal Lines -->
+        <Line Canvas.Left="0" Canvas.Top="60" X2="886" Y2="0" Stroke="#00F5FF" StrokeThickness="0.5" Opacity="0.3"/>
+        <Line Canvas.Left="0" Canvas.Top="320" X2="886" Y2="0" Stroke="#00F5FF" StrokeThickness="0.5" Opacity="0.2"/>
+        <Line Canvas.Left="0" Canvas.Top="480" X2="886" Y2="0" Stroke="#00F5FF" StrokeThickness="0.5" Opacity="0.3"/>
+
+        <!-- Sol Panel - Control Station -->
+        <Border Canvas.Left="5" Canvas.Top="5" 
+                Width="240" Height="510" 
+                Style="{StaticResource CyberBorderStyle}">
+            <Canvas Background="#161B22">
+                <!-- Header -->
+                <TextBlock Canvas.Left="15" Canvas.Top="19" 
+                          Style="{StaticResource CyberTextStyle}"
+                          FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Top"><Run Text="◤ "/><Run Text=" "/><Run Text="CONTROL STATION "/><Run Language="tr-tr" Text=" "/><Run Text="◥"/></TextBlock>
+
+                <!-- System Info Panel -->
+                <TextBlock Canvas.Left="15" Canvas.Top="40" 
+                          Text="┌─ SYSTEM INFO ─────────┐" 
+                          Style="{StaticResource CyberTextStyle}"
+                          FontSize="10"/>
+
+                <TextBlock Canvas.Left="20" Canvas.Top="55" 
+                          Text="│ GPU/AUDIO MODEL" 
+                          Style="{StaticResource CyberTextStyle}"
+                          FontSize="9"/>
+
+                <TextBlock Canvas.Left="20" Canvas.Top="70" 
+                          Text="│ WIN 10/11 x64" 
+                          Style="{StaticResource CyberTextStyle}"
+                          FontSize="9"/>
+
+                <TextBlock x:Name="txtStatus" Canvas.Left="20" Canvas.Top="85" 
+                          Text="│ STATUS: READY" 
+                          Style="{StaticResource CyberTextStyle}"
+                          FontSize="9"/>
+
+                <TextBlock Canvas.Left="15" Canvas.Top="105" 
+                          Text="└───────────────────────┘" 
+                          Style="{StaticResource CyberTextStyle}"
+                          FontSize="10"/>
+
+                <!-- Info Panel -->
+                <Border Canvas.Left="15" Canvas.Top="130" 
+                       Width="210" Height="50" 
+                       Style="{StaticResource CyberBorderStyle}">
+                    <TextBlock x:Name="txtInfo" 
+                              Text="KURULUM ARACLARI" 
+                              Style="{StaticResource CyberTextStyle}"
+                              FontSize="15"
+                              TextAlignment="Center"
+                              VerticalAlignment="Center"
+                              HorizontalAlignment="Center"/>
+                </Border>
+
+                <!-- Control Buttons -->
+                <Button x:Name="btnInstall" 
+                       Canvas.Left="15" Canvas.Top="200"
+                       Width="210" Height="35"
+                       Content="▶ YÜKLE" 
+                       Style="{StaticResource CyberButtonStyle}"
+                       Click="btnInstall_Click"/>
+
+                <Button x:Name="btnFolder" 
+                       Canvas.Left="15" Canvas.Top="245"
+                       Width="210" Height="30"
+                       Content="📁 DOSYA" 
+                       Style="{StaticResource CyberButtonStyle}"
+                       Click="btnFolder_Click"/>
+
+                <Button x:Name="btnAddDriver" 
+                       Canvas.Left="15" Canvas.Top="285"
+                       Width="210" Height="30"
+                       Content="+ PROGRAM EKLE" 
+                       Style="{StaticResource CyberButtonStyle}"
+                       Click="btnAddDriver_Click"/>
+
+                <CheckBox x:Name="chkRestart" 
+                         Canvas.Left="15" Canvas.Top="457"
+                         Content="RESTART" 
+                         Foreground="#00F5FF"
+                         FontFamily="Consolas"
+                         FontWeight="Bold"
+                         FontSize="14"
+                         Checked="chkRestart_CheckedChanged" 
+                         Unchecked="chkRestart_CheckedChanged" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+            </Canvas>
+        </Border>
+
+        <!-- Category Buttons -->
+        <Button x:Name="btnDriverCategory" 
+               Canvas.Left="260" Canvas.Top="5"
+               Width="300" Height="45"
+               Content="◤ DRIVERS ◥" 
+               Style="{StaticResource CyberButtonStyle}"
+               Tag="Sürücüler" 
+               Click="CategoryButton_Click"/>
+
+        <Button x:Name="btnProgramsCategory" 
+               Canvas.Left="570" Canvas.Top="5"
+               Width="311" Height="45"
+               Content="◤ PROGRAMS ◥" 
+               Style="{StaticResource CyberButtonStyle}"
+               Tag="Programlar" 
+               Click="CategoryButton_Click"/>
+
+        <!-- Terminal Log Area -->
+        <Border Canvas.Left="260" Canvas.Top="60" 
+               Width="621" Height="250" 
+               Style="{StaticResource CyberBorderStyle}">
+            <Canvas Background="#0A0E13">
+                <!-- Terminal Header -->
+                <TextBlock Canvas.Left="5" Canvas.Top="2"
+                          Text="┌─ TERMINAL LOG ────────────────────────────────────────────────────┐" 
+                          Style="{StaticResource CyberTextStyle}"
+                          FontSize="9"/>
+
+                <!-- Terminal Content -->
+                <ScrollViewer Canvas.Left="10" Canvas.Top="20" 
+                             Width="601" Height="210"
+                             VerticalScrollBarVisibility="Auto"
+                             Background="Transparent">
+                    <TextBox x:Name="txtLog" 
+                            IsReadOnly="True" 
+                            TextWrapping="Wrap" 
+                            BorderThickness="0" 
+                            Background="Transparent"
+                            Foreground="#00FF88"
+                            FontFamily="Consolas"
+                            FontSize="10"
+                            Text="&#x0A;"/>
+                </ScrollViewer>
+
+                <!-- Terminal Footer -->
+                <TextBlock Canvas.Left="5" Canvas.Top="235"
+                          Text="└──────────────────────────────────────────────────────────────────────┘" 
+                          Style="{StaticResource CyberTextStyle}"
+                          FontSize="9"/>
+            </Canvas>
+        </Border>
+
+        <!-- Progress Bar -->
+        <ProgressBar x:Name="progressBar" 
+                    Canvas.Left="260" Canvas.Top="320"
+                    Width="621" Height="20"
+                    Style="{StaticResource CyberProgressStyle}"/>
+
+        <!-- Items List -->
+        <Border Canvas.Left="260" Canvas.Top="350" 
+               Width="621" Height="125" 
+               Style="{StaticResource CyberBorderStyle}">
+            <Canvas Background="#0A0E13">
+                <!-- List Header -->
+                <TextBlock Canvas.Left="5" Canvas.Top="2"
+                          Text="┌─ KURULUM KUYRUK ─────────────────────────────────────────────────┐" 
+                          Style="{StaticResource CyberTextStyle}"
+                          FontSize="9"/>
+
+                <!-- List Content -->
+                <ListBox x:Name="lstDrivers" 
+                        Canvas.Left="10" Canvas.Top="20"
+                        Width="601" Height="90"
+                        Style="{StaticResource CyberListBoxStyle}"/>
+            </Canvas>
+        </Border>
+
+        <!-- Status Bar -->
+        <Border Canvas.Left="0" Canvas.Top="485" 
+               Width="886" Height="35" 
+               Style="{StaticResource CyberBorderStyle}">
+            <Canvas Background="#161B22">
+                <TextBlock Canvas.Left="10" Canvas.Top="12"
+                          Text="DURUM:" 
+                          Style="{StaticResource CyberTextStyle}"
+                          FontSize="10"/>
+
+                <TextBlock x:Name="txtStatusBar" 
+                          Canvas.Left="70" Canvas.Top="12"
+                          Text="READY FOR OPERATION" 
+                          Style="{StaticResource CyberTextStyle}"
+                          FontSize="10"/>
+
+                <ProgressBar x:Name="progressBarStatus" 
+                            Canvas.Left="721" Canvas.Top="11"
+                            Width="150" Height="12"
+                            Style="{StaticResource CyberProgressStyle}"/>
+            </Canvas>
+        </Border>
+    </Canvas>
+</Window>
